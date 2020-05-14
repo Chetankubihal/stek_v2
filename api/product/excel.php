@@ -20,7 +20,7 @@ $product = new Product($db);
     
     if(isset($_POST['upload_excel']))
     {
-        $seller_email="'". $_POST['seller_email'] ."'";
+        $seller_email= $_POST['seller_email'] ;
 
         $file_directory = "uploads/bulk_upload_excel/".$_POST['seller_email']."/";
         if(!is_dir($file_directory)){
