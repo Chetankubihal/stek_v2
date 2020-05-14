@@ -198,7 +198,6 @@ function update()
              firstName = :firstName,
              lastName = :lastName,
              contact = :contact,
-             image = :image,
              email = :email
           WHERE
              email = :email";
@@ -219,7 +218,6 @@ function update()
             $stmt->bindParam(':email', $this->email);
             $stmt->bindParam(':contact', $this->contact);
            
-            $stmt->bindParam(':image', $this->image);
 
 // execute the query
         if($stmt->execute()){
