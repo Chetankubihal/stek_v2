@@ -15,7 +15,9 @@ $db = $database->getConnection();
  
 // prepare product object
 $product = new Product($db);
-$product->product_id= $_POST['product_id'] ;
+
+$product->product_SKU= $_POST['product_SKU'] ;
+$product->seller_email= $_POST['seller_email'] ;
 
 
 //tokenize email to use it as image name
@@ -23,7 +25,7 @@ $product->product_id= $_POST['product_id'] ;
 
 //set target directory
 
- $target_dir = getcwd().'\\product_images\\'.$product->product_id.'\\';
+ $target_dir = getcwd().'\\product_images\\'.$product->seller_email.'\\'.$product->product_SKU.'\\';
 
 
 

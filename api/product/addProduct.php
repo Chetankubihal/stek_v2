@@ -28,6 +28,13 @@ $product = new Product($db);
     $product->product_category = '"'. $_POST["product_category"].'"';
     $product->product_sub_category='"'.  $_POST["product_sub_category"].'"';
     $product->seller_email='"'.  $_POST["seller_email"].'"';
+    $product->product_MRP='"'.  $_POST["product_MRP"].'"';
+    $product->product_selling_price='"'.  $_POST["product_selling_price"].'"';
+    $product->package_length='"'.  $_POST["package_length"].'"';
+    $product->package_width='"'.  $_POST["package_width"].'"';
+    $product->package_breadth='"'.  $_POST["package_breadth"].'"';
+    $product->package_weight='"'.  $_POST["package_weight"].'"';
+
     // $product->product_MRP='"'.  $_POST["product_MRP"].'"';
     // $product->product_selling_price='"'.  $_POST["product_selling_price"].'"';
 
@@ -39,15 +46,20 @@ $product = new Product($db);
         
 
         $current_directory=getcwd();
-
         //concatenate current_directory with product_id
-        $current_directory=$current_directory."\\product_images\\".$product->product_id;
+        $current_directory=$current_directory."\\product_images\\".trim($product->seller_email,'"')."\\";
 
         //making directory by product_id
-        mkdir($current_directory);
+        if(!is_dir($current_directory))
+        mkdir($current_directory,0777);
+
+        $current_directory=$current_directory.$product->product_SKU."\\";
+
+        if(!is_dir($current_directory))
+        mkdir($current_directory,0777);
 
         http_response_code(200);
-        echo json_encode(array("message"=>"True","product_id"=>$product->product_id));
+        echo json_encode(array("message"=>"True","product_id"=>$product->product_id,"product_sku"=>$product->product_SKU));
     }
 
     else

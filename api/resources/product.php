@@ -30,7 +30,7 @@ public function __construct($con)
 
 function addProduct()
 {
-    $query="INSERT INTO products(product_SKU,product_HSN,product_name,product_description,product_category,product_sub_category,seller_email) values (".$this->product_SKU.','.$this->product_HSN.','.$this->product_name.','.$this->product_description.','.$this->product_category.','.$this->product_sub_category.','.$this->seller_email.")";
+    $query="INSERT INTO products(product_SKU,product_HSN,product_name,product_description,product_category,product_sub_category,seller_email,product_MRP,product_selling_price,package_length,package_width,package_breadth,package_weight) values (".$this->product_SKU.','.$this->product_HSN.','.$this->product_name.','.$this->product_description.','.$this->product_category.','.$this->product_sub_category.','.$this->seller_email.','.$this->product_MRP.','.$this->product_selling_price.','.$this->package_length.','.$this->package_width.','.$this->package_breadth.','.$this->package_weight.")";
 
   
     $stmt= $this->conn->prepare($query);
@@ -45,7 +45,9 @@ function addProduct()
        if($stmt1->execute())
             {
                 $row = $stmt1->fetch(PDO::FETCH_ASSOC);
-                $this->product_id=$row['id']+1;
+                $this->product_id=$row['id'];
+                $this->product_id=$row['product_SKU'];
+
                 return true;
             }
         else 

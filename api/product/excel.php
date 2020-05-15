@@ -25,7 +25,7 @@ $product = new Product($db);
         $file_directory = "uploads/bulk_upload_excel/".$_POST['seller_email']."/";
         if(!is_dir($file_directory)){
             //Directory does not exist, so lets create it.
-            mkdir($file_directory);
+            mkdir($file_directory,0777,true);
         }
         
         $file_info = $_FILES["result_file"]["name"];
